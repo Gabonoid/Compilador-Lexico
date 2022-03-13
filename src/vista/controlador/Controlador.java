@@ -51,7 +51,6 @@ public class Controlador implements ActionListener {
     }
 
     private void abrirArchivo() {
-        System.out.println("Abrir");
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt");
         fileChooser.setFileFilter(filter);
@@ -66,9 +65,7 @@ public class Controlador implements ActionListener {
     }
 
     private void compilar() throws IOException {
-        System.out.println("Compilar");
         if (archivoExiste) {
-            System.out.println("Existe");
             
             principal.jTableDatos.setModel(Lectura.leerArchivo(archivo));
             principal.jTableDatos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

@@ -29,23 +29,30 @@ public class Lectura {
                     .replace(";", " ; ")
                     .replaceAll("[ ]+", " ");
 
-            System.out.println(linea);
+            //System.out.println(linea);
 
             String[] prueba = linea.split(" ");
-            for (int i = 0; i < prueba.length; i++) {
+            comprobador: for (int i = 0; i < prueba.length; i++) {
 
-                String[] identificador = Lexico.evaluarIdentificador(prueba[i]);
-                String[] numero = Lexico.evaluarEntero(prueba[i]);
+                String[] reservado = Lexico.evaluarReservado(prueba[i]);
+                String[] entero = Lexico.evaluarEntero(prueba[i]);
                 String[] operador = Lexico.evaluarOperador(prueba[i]);
+                String[] identificador = Lexico.evaluarIdentidicador(prueba[i]);
 
-                if (identificador != null) {
-                    modelo.addRow(identificador);
+                if (reservado != null) {
+                    modelo.addRow(reservado);
                 }
-                if (numero != null) {
-                    modelo.addRow(numero);
+                if (entero != null) {
+                    modelo.addRow(entero);
                 }
                 if (operador != null) {
                     modelo.addRow(operador);
+                }
+                if (identificador != null && operador == null) {
+                    modelo.addRow(identificador);
+                }
+                if (identificador == null && reservado == null && entero == null && operador == null) {
+                    modelo.addRow(new String[]{"ERROR", prueba[i]});
                 }
 
             }

@@ -14,7 +14,7 @@ public class Lexico {
         "if",
         "for"};
 
-    public static String[] evaluarIdentificador(String posibleId) {
+    public static String[] evaluarReservado(String posibleId) {
         String id = posibleId.toLowerCase();
         String[] token = null;
 
@@ -42,32 +42,48 @@ public class Lexico {
 
         if (posibleOperador.equalsIgnoreCase("+")) {
             token = new String[]{"SUMA", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase("-")){
+
+        } else if (posibleOperador.equalsIgnoreCase("-")) {
             token = new String[]{"RESTA", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase("*")){
+
+        } else if (posibleOperador.equalsIgnoreCase("*")) {
             token = new String[]{"PRODUCTO", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase("/")){
+
+        } else if (posibleOperador.equalsIgnoreCase("/")) {
             token = new String[]{"DIVISION", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase("=")){
+
+        } else if (posibleOperador.equalsIgnoreCase("=")) {
             token = new String[]{"ASIGNACION", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase(",")){
+
+        } else if (posibleOperador.equalsIgnoreCase(",")) {
             token = new String[]{"COMA", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase("(")){
+
+        } else if (posibleOperador.equalsIgnoreCase("(")) {
             token = new String[]{"PARENTESIS_IN", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase(")")){
+
+        } else if (posibleOperador.equalsIgnoreCase(")")) {
             token = new String[]{"PARENTESIS_FIN", posibleOperador};
-            
-        }else if (posibleOperador.equalsIgnoreCase(";")){
+
+        } else if (posibleOperador.equalsIgnoreCase(";")) {
             token = new String[]{"PUNTOCOMA", posibleOperador};
         }
 
+        return token;
+    }
+
+    public static String[] evaluarIdentidicador(String posibleIdentificador) {
+        String[] token = null;
+        char primeraLetra = posibleIdentificador.charAt(0);
+        int letranumero = Character.getNumericValue(primeraLetra);
+        System.out.println(letranumero + "\t=>\t" + primeraLetra);
+        if (!Character.isDigit(primeraLetra)/*
+                || (letranumero >= 97 && letranumero <= 122)
+                || (letranumero >= 65 && letranumero <= 90)*/) {
+            if (primeraLetra == '_'
+                    || letranumero != -1) {
+                token = new String[]{"IDENTIFICADOR", posibleIdentificador};
+            }
+        }
         return token;
     }
 
