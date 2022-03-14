@@ -69,8 +69,9 @@ public class Controlador implements ActionListener {
             
             principal.jTableDatos.setModel(Lectura.leerArchivo(archivo));
             principal.jTableDatos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            principal.jTableDatos.setEnabled(false);
-            
+            principal.jTableDatos.getColumnModel().getColumn(0).setPreferredWidth(principal.jTableDatos.getWidth()/2);
+            principal.jTableDatos.getColumnModel().getColumn(1).setPreferredWidth((principal.jTableDatos.getWidth()/2)-20);
+            principal.jTableDatos.setEnabled(false);            
         } else {
             JOptionPane.showMessageDialog(null, "Primero seleccione un archivo");
         }
