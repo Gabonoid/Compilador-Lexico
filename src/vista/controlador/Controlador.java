@@ -66,12 +66,24 @@ public class Controlador implements ActionListener {
 
     private void compilar() throws IOException {
         if (archivoExiste) {
+            Lectura.numTokens = 0;
+            Lectura.numEnteros = 0;
+            Lectura.numErrores = 0;
+            Lectura.numIdentificadores = 0;
+            Lectura.numOperadores = 0;
+            Lectura.numReservados = 0;
             
             principal.jTableDatos.setModel(Lectura.leerArchivo(archivo));
             principal.jTableDatos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            principal.jTableDatos.getColumnModel().getColumn(0).setPreferredWidth(principal.jTableDatos.getWidth()/2);
-            principal.jTableDatos.getColumnModel().getColumn(1).setPreferredWidth((principal.jTableDatos.getWidth()/2)-20);
-            principal.jTableDatos.setEnabled(false);            
+            principal.jTableDatos.getColumnModel().getColumn(0).setPreferredWidth(120);
+            principal.jTableDatos.getColumnModel().getColumn(1).setPreferredWidth(180);
+            principal.jTableDatos.setEnabled(false);
+            principal.infoTokens.setText(Lectura.numTokens+"");
+            principal.infoErrores.setText(Lectura.numErrores+"");
+            principal.infoId.setText(Lectura.numIdentificadores+"");
+            principal.infoOperadores.setText(Lectura.numOperadores+"");
+            principal.infoReservadas.setText(Lectura.numReservados+"");
+            principal.infoEnteros.setText(Lectura.numEnteros+"");
         } else {
             JOptionPane.showMessageDialog(null, "Primero seleccione un archivo");
         }

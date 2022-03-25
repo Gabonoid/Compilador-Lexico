@@ -72,16 +72,17 @@ public class Lexico {
     }
 
     public static String[] evaluarIdentidicador(String posibleIdentificador) {
+      // System.out.println(posibleIdentificador);
         String[] token = null;
-        char primeraLetra = posibleIdentificador.charAt(0);
+        String palabraLimpia = posibleIdentificador.trim();
+        char primeraLetra = palabraLimpia.charAt(0);
         int letranumero = Character.getNumericValue(primeraLetra);
-        // System.out.println(letranumero + "\t=>\t" + primeraLetra);
         if (!Character.isDigit(primeraLetra)/*
                 || (letranumero >= 97 && letranumero <= 122)
                 || (letranumero >= 65 && letranumero <= 90)*/) {
             if (primeraLetra == '_'
                     || letranumero != -1) {
-                token = new String[]{"IDENTIFICADOR", posibleIdentificador};
+                token = new String[]{"IDENTIFICADOR", palabraLimpia};
             }
         }
         return token;
