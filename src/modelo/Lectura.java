@@ -34,6 +34,7 @@ public class Lectura {
                     .replace("(", " ( ")
                     .replace(")", " ) ")
                     .replace(";", " ; ")
+                    .replace("$", " $ ")
                     .replaceAll("[ ]+", " ")
                     .trim();
 
